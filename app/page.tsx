@@ -41,7 +41,7 @@ export default function LandingPage() {
     Swal.fire({
       title: 'Hehe, sabar yaa!',
       text: 'tunggu besok ya sweetiee, i luv u ❤️',
-      imageUrl: '/bubu.jpg',
+      imageUrl: '/bibi.jpg',
       imageWidth: 150,
       imageHeight: 150,
       imageAlt: 'A cute bubu',

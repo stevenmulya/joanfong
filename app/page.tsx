@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Swal from 'sweetalert2';
 import Image from 'next/image';
+import Link from 'next/link'; // 1. Import Link
 
 const targetDate = new Date();
 targetDate.setDate(targetDate.getDate() + 1);
@@ -37,18 +37,7 @@ export default function LandingPage() {
     };
   }, []);
 
-  const handleRevealClick = () => {
-    Swal.fire({
-      title: 'Hehe, sabar yaa!',
-      text: 'tunggu besok ya sweetiee, i luv u ❤️',
-      imageUrl: '/bibi.jpg',
-      imageWidth: 150,
-      imageHeight: 150,
-      imageAlt: 'A cute bubu',
-      confirmButtonText: 'Okee, aku tunggu!',
-      confirmButtonColor: '#3b82f6',
-    });
-  };
+  // 2. Fungsi handleRevealClick tidak lagi diperlukan dan bisa dihapus
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-br from-blue-900 to-indigo-900 overflow-hidden text-white font-serif">
@@ -84,19 +73,20 @@ export default function LandingPage() {
         </div>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 2, ease: 'easeOut' }}
-        className="relative z-10 mt-12"
-      >
-        <button
-          onClick={handleRevealClick}
-          className="px-8 py-4 bg-white text-blue-800 rounded-full text-xl font-bold shadow-lg hover:bg-blue-200 transition-colors duration-300"
+      {/* 3. Bungkus tombol dengan komponen Link */}
+      <Link href="/invitation" className="relative z-10 mt-12">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 2, ease: 'easeOut' }}
         >
-          Reveal the Message
-        </button>
-      </motion.div>
+          <button
+            className="px-8 py-4 bg-white text-blue-800 rounded-full text-xl font-bold shadow-lg hover:bg-blue-200 transition-colors duration-300"
+          >
+            Reveal the Message
+          </button>
+        </motion.div>
+      </Link>
     </main>
   );
 }

@@ -1,27 +1,16 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { FaPlay, FaPause } from 'react-icons/fa'
 
-export default function AudioPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const audioRef = useRef<HTMLAudioElement>(null)
+interface AudioPlayerProps {
+  isPlaying: boolean;
+  setIsPlaying: (playing: boolean) => void;
+}
 
-  useEffect(() => {
-    // Mencoba memutar lagu secara otomatis saat komponen dimuat
-    const playPromise = audioRef.current?.play()
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          setIsPlaying(true)
-        })
-        .catch(() => {
-          // Gagal autoplay, biasanya karena kebijakan browser
-          setIsPlaying(false)
-        })
-    }
-  }, [])
+export default function AudioPlayer({ isPlaying, setIsPlaying }: AudioPlayerProps) {
+  const audioRef = useRef<HTMLAudioElement>(null)
 
   const togglePlayPause = () => {
     if (audioRef.current) {
@@ -35,7 +24,7 @@ export default function AudioPlayer() {
   }
 
   return (
-    <div className="fixed top-8 right-8 z-50"> {/* Posisi di kanan atas */}
+    <div>
       <audio ref={audioRef} src="/whydobirds.mp3" loop />
       <motion.button
         onClick={togglePlayPause}

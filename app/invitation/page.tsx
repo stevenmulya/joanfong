@@ -2,7 +2,7 @@
 
 import { motion, easeOut } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image'; // <-- Pastikan Image di-import
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 const containerVariants = {
@@ -10,7 +10,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.5,
+      staggerChildren: 0.3, // Slightly speed up the animation
     },
   },
 };
@@ -21,30 +21,48 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 1,
+      duration: 0.8, // Slightly speed up the animation
       ease: easeOut,
     },
   },
 };
 
+// --- DATA CHANGES HERE ---
 const chapterData = [
   {
     id: 'coffee',
     time: '09:00 - 10:00',
     title: 'Chapter 1: The Coffee Date',
-    description: 'Let’s start our day with a warm cup of coffee and a sweet conversation.',
+    description: 'Buy coffee and a snack for breakfast, then take a selfie with the barista while holding your coffee.',
+    location: 'Pick Me Up',
   },
   {
     id: 'aquarium',
     time: '11:00 - 13:00',
     title: 'Chapter 2: The Aquarium Adventure',
-    description: 'Time to dive into an underwater world filled with colorful marine life.',
+    description: 'Take a picture of your 5 favorite animals, a selfie with an animal that resembles your partner, and don\'t forget a nice photo together.',
+    location: 'Jakarta Aquarium & Safari',
   },
   {
     id: 'lunch',
     time: '14:00 - 15:00',
     title: 'Chapter 3: The Japanese Lunch',
-    description: 'A perfect end to our adventure with delicious Japanese cuisine.',
+    description: 'Enjoy a Japanese meal (rating 4.9+, 11k+ reviews). Take photos of the food and you two before and after eating.',
+    location: 'Yuki Blok M',
+  },
+  {
+    id: 'massage',
+    time: '19:00 - 20:30',
+    title: 'Chapter 4: The Relaxing Massage',
+    description: 'Enjoy a body massage and don\'t talk too much!!',
+    location: 'Yi Tiao Xian PIK',
+  },
+  {
+    id: 'slow-walk',
+    time: '21:00 - 22:00',
+    title: 'Chapter 5: Slow Walking',
+    description: 'Take a short slow walk to enjoy the evening atmosphere, then get ready to head home.',
+    location: 'Batavia PIK',
   },
 ];
 
@@ -57,10 +75,12 @@ export default function InvitationPage() {
       setCompletedChapters(JSON.parse(storedProgress));
     }
   }, []);
+  
+  // Variable to check if all chapters are complete
+  const allChaptersComplete = completedChapters.length === chapterData.length;
 
   const isChapterUnlocked = (chapterId: string, index: number) => {
     if (index === 0) return true;
-    
     const prevChapterId = chapterData[index - 1].id;
     return completedChapters.includes(prevChapterId);
   };
@@ -71,9 +91,7 @@ export default function InvitationPage() {
   };
 
   return (
-    // PERUBAHAN 1: Ganti background & atur padding untuk header
     <div className="relative min-h-screen flex flex-col items-center px-8 pt-28 pb-12 text-white font-sans overflow-x-hidden">
-      {/* PERUBAHAN 2: Tambahkan komponen Image sebagai background */}
       <Image
         src="/bibi.jpg"
         alt="Bibi Background"
@@ -81,7 +99,6 @@ export default function InvitationPage() {
         style={{ objectFit: 'cover' }}
         className="-z-10 filter blur-sm opacity-50"
       />
-
       <motion.div
         initial="hidden"
         animate="visible"
@@ -115,6 +132,9 @@ export default function InvitationPage() {
                         {chapter.title} {completed && '✅'}
                       </h2>
                       <p className="text-base md:text-lg mt-2">{chapter.description}</p>
+                      <p className="text-base font-semibold text-cyan-200 mt-2">
+                        📍 {chapter.location}
+                      </p>
                       <p className="text-sm text-white/70 mt-1">{chapter.time}</p>
                     </>
                   ) : (
@@ -151,13 +171,28 @@ export default function InvitationPage() {
                 )}
               </div>
             </motion.div>
-          )
+          );
         })}
+
+        {/* --- SECRET BUTTON ADDED HERE --- */}
+        {allChaptersComplete && (
+          <motion.div variants={itemVariants} className="mt-8 text-center">
+            <Link href="/letter">
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: '0px 0px 12px rgb(236, 72, 153)' }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 bg-pink-500 text-white rounded-full font-bold text-lg shadow-lg hover:bg-pink-600 transition-all duration-300"
+              >
+                Chapter 6
+              </motion.button>
+            </Link>
+          </motion.div>
+        )}
 
         <motion.div variants={itemVariants} className="mt-12 text-center">
           <button
             onClick={handleResetProgress}
-            className="text-red-400 text-lg font-semibold underline hover:text-red-500 transition-colors"
+            className="text-red-300 text-sm font-semibold underline hover:text-red-400 transition-colors"
           >
             Reset Progress
           </button>

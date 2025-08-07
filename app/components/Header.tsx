@@ -17,7 +17,7 @@ export default function Header({ isPlaying, setIsPlaying }: HeaderProps) {
       transition={{ duration: 1, ease: 'easeOut', delay: 1.5 }}
     >
       <div className="text-sm text-gray-300">
-        <p>A creation for Joan, only Joan.</p>
+        <p>A creation for Joan, My only Joan.</p>
       </div>
       <AudioPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
     </motion.header>

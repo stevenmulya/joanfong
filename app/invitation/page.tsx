@@ -1,8 +1,9 @@
-'use client'
+'use client';
 
-import { motion, easeOut } from 'framer-motion'
-import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { motion, easeOut } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image'; // <-- Pastikan Image di-import
+import { useState, useEffect } from 'react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -12,7 +13,7 @@ const containerVariants = {
       staggerChildren: 0.5,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -24,7 +25,7 @@ const itemVariants = {
       ease: easeOut,
     },
   },
-}
+};
 
 const chapterData = [
   {
@@ -45,24 +46,24 @@ const chapterData = [
     title: 'Chapter 3: The Japanese Lunch',
     description: 'A perfect end to our adventure with delicious Japanese cuisine.',
   },
-]
+];
 
 export default function InvitationPage() {
-  const [completedChapters, setCompletedChapters] = useState<string[]>([])
+  const [completedChapters, setCompletedChapters] = useState<string[]>([]);
 
   useEffect(() => {
-    const storedProgress = localStorage.getItem('completedChapters')
+    const storedProgress = localStorage.getItem('completedChapters');
     if (storedProgress) {
-      setCompletedChapters(JSON.parse(storedProgress))
+      setCompletedChapters(JSON.parse(storedProgress));
     }
-  }, [])
+  }, []);
 
   const isChapterUnlocked = (chapterId: string, index: number) => {
-    if (index === 0) return true
+    if (index === 0) return true;
     
-    const prevChapterId = chapterData[index - 1].id
-    return completedChapters.includes(prevChapterId)
-  }
+    const prevChapterId = chapterData[index - 1].id;
+    return completedChapters.includes(prevChapterId);
+  };
 
   const handleResetProgress = () => {
     localStorage.removeItem('completedChapters');
@@ -70,12 +71,22 @@ export default function InvitationPage() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-br from-teal-500 to-indigo-600 text-white font-sans overflow-hidden">
+    // PERUBAHAN 1: Ganti background & atur padding untuk header
+    <div className="relative min-h-screen flex flex-col items-center px-8 pt-28 pb-12 text-white font-sans overflow-x-hidden">
+      {/* PERUBAHAN 2: Tambahkan komponen Image sebagai background */}
+      <Image
+        src="/bibi.jpg"
+        alt="Bibi Background"
+        fill
+        style={{ objectFit: 'cover' }}
+        className="-z-10 filter blur-sm opacity-50"
+      />
+
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative z-10 w-full max-w-4xl"
+        className="w-full max-w-4xl"
       >
         <motion.div variants={itemVariants} className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight drop-shadow-md">
@@ -87,8 +98,8 @@ export default function InvitationPage() {
         </motion.div>
 
         {chapterData.map((chapter, index) => {
-          const unlocked = isChapterUnlocked(chapter.id, index)
-          const completed = completedChapters.includes(chapter.id)
+          const unlocked = isChapterUnlocked(chapter.id, index);
+          const completed = completedChapters.includes(chapter.id);
 
           return (
             <motion.div
@@ -153,5 +164,5 @@ export default function InvitationPage() {
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }

@@ -31,7 +31,7 @@ const itemVariants = {
 const chapterData = [
   {
     id: 'coffee',
-    time: '09:00 - 10:00',
+    time: '10:00 - 10:30',
     title: 'Chapter 1: The Coffee Date',
     description: 'Buy coffee and a snack for breakfast, then take a selfie with the barista while holding your coffee.',
     location: 'Pick Me Up',

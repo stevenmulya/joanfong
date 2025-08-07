@@ -40,6 +40,7 @@ export default function LetterPage() {
       />
       <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
 
+      {/* --- LETTER CONTENT --- */}
       <motion.div
         initial="hidden"
         animate="visible"
@@ -66,11 +67,12 @@ export default function LetterPage() {
           <p className="mt-8 text-right">
             With all my love,
             <br />
-            <span className={`${titleFont.className} text-xl`}>Your Forever</span>
+            <span className={`${titleFont.className} text-xl`}>Steven Bonao</span>
           </p>
         </div>
       </motion.div>
 
+      {/* --- SLIDESHOW COMPONENT --- */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -80,7 +82,20 @@ export default function LetterPage() {
         <LetterSlideshow />
       </motion.div>
 
-      <div className="mt-4 mb-12 text-center z-10">
+      {/* --- REASSURANCE MESSAGE ADDED HERE --- */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.8 }}
+        className="relative z-10 mt-8 max-w-2xl text-center"
+      >
+        <p className={`${bodyFont.className} text-stone-200 text-lg leading-relaxed`}>
+          Thank you for being the best girlfriend and my greatest adventure. Every smile, every laugh, and every quiet moment we share—like the ones in these photos—are the highlights of my life. You&apos;ve brought so much light and happiness into my world, and I feel like the luckiest person just to be by your side. This is just the beginning. I love you.
+        </p>
+      </motion.div>
+
+      {/* --- Back to Itinerary Button --- */}
+      <div className="mt-8 mb-12 text-center z-10">
         <Link href="/invitation">
           <motion.button 
             whileHover={{ scale: 1.05 }}

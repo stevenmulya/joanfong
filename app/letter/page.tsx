@@ -40,7 +40,6 @@ export default function LetterPage() {
       />
       <div className="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
 
-      {/* --- LETTER CONTENT --- */}
       <motion.div
         initial="hidden"
         animate="visible"
@@ -51,19 +50,18 @@ export default function LetterPage() {
           Chapter 6: Our Forever
         </h1>
         
-        {/* --- FULL LETTER TEXT IS HERE --- */}
         <div className={`${bodyFont.className} text-stone-200 text-base sm:text-lg leading-relaxed space-y-6`}>
           <p className="first-letter:text-6xl first-letter:font-bold first-letter:text-amber-200/80 first-letter:mr-3 first-letter:float-left">
             My Dearest Joan,
           </p>
           <p>
-            If you are reading this, it means our perfect day has come to a close. From that first cup of coffee to the final, quiet stroll, every moment was a chapter I never want to forget. Each mission wasn't just a task to be completed, but another memory woven into the story of us.
+            If you are reading this, it means our perfect day has come to a close. From that first cup of coffee to the final, quiet stroll, every moment was a chapter I never want to forget. Each mission wasn&apos;t just a task to be completed, but another memory woven into the story of us.
           </p>
           <p>
-            And now, for our final and most important mission—one that lasts a lifetime. It’s not a challenge of puzzles or places, but a simple invitation: to keep choosing each other, every single day. I know I'm not perfect, but my greatest promise is to always try to be the man that you deserve. Our adventure together is my favorite story, and I can't wait to write all the next chapters with you.
+            And now, for our final and most important mission—one that lasts a lifetime. It&apos;s not a challenge of puzzles or places, but a simple invitation: to keep choosing each other, every single day. I know I&apos;m not perfect, but my greatest promise is to always try to be the man that you deserve. Our adventure together is my favorite story, and I can&apos;t wait to write all the next chapters with you.
           </p>
            <p>
-            This isn't the end of our adventure; it's the beginning of a lifetime's worth. Thank you for this day, and thank you for being you.
+            This isn&apos;t the end of our adventure; it&apos;s the beginning of a lifetime&apos;s worth. Thank you for this day, and thank you for being you.
           </p>
           <p className="mt-8 text-right">
             With all my love,
@@ -73,7 +71,6 @@ export default function LetterPage() {
         </div>
       </motion.div>
 
-      {/* --- SLIDESHOW COMPONENT --- */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -83,7 +80,6 @@ export default function LetterPage() {
         <LetterSlideshow />
       </motion.div>
 
-      {/* --- Back to Itinerary Button --- */}
       <div className="mt-4 mb-12 text-center z-10">
         <Link href="/invitation">
           <motion.button 

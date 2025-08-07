@@ -15,14 +15,24 @@ export default function LandingPage() {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-br from-blue-900 to-indigo-900 overflow-hidden text-white font-serif">
       <div className="absolute inset-0 z-0 opacity-50">
-        <Image 
-          src="/images/underwater-background.jpg" 
+        <Image
+          src="/bubu.jpg"
           alt="Underwater background"
           layout="fill"
           objectFit="cover"
           className="filter blur-sm"
         />
       </div>
+      
+      {/* Pesan di pojok kiri atas */}
+      <motion.div
+        className="absolute top-10 left-10 text-sm text-gray-300"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1 }}
+      >
+        <p>A creation for Joan, with love.</p>
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -34,7 +44,7 @@ export default function LandingPage() {
           Hello, Joan Fong!
         </h1>
         <p className="text-lg md:text-2xl lg:text-3xl">
-          An underwater journey awaits you.
+          An enchanted journey awaits you.
         </p>
       </motion.div>
 
@@ -52,15 +62,6 @@ export default function LandingPage() {
           </Link>
         </motion.div>
       )}
-
-      <motion.div
-        className="absolute bottom-10 left-10 text-sm text-gray-300"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 3 }}
-      >
-        <p>A creation for Joan, with love.</p>
-      </motion.div>
     </div>
   )
 }
